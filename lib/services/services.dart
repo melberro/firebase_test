@@ -3,19 +3,13 @@ import 'dart:convert';
 import 'package:firebase_test/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
-class ApiConfig {
-  static ApiConfig shared = ApiConfig();
-  String token = "";
-}
-
 const String _baseUrl =
-    "https://test-project-90b50-default-rtdb.europe-west1.firebasedatabase.app";
+    "https://test-project-51633-default-rtdb.europe-west1.firebasedatabase.app/";
 
 class Services {
   Uri getUrl(String endpoint) => Uri.parse("$_baseUrl/$endpoint.json");
 
   Future<List<UserModel>> getUsers() async {
-    ApiConfig.shared.token = "asdjdashjsbfajkbh";
     http.Response response = await http.get(getUrl("users"));
     List<UserModel> list = [];
     if (response.statusCode >= 200 && response.statusCode < 300) {

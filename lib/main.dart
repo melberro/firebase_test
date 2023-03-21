@@ -1,12 +1,16 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_test/firebase_options.dart';
-import 'package:firebase_test/login.dart';
+import 'package:firebase_test/components/login_page.dart';
+import 'package:firebase_test/providers/user_provider.dart';
+import 'package:firebase_test/services/firebase_options.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MyApp());
+  runApp(MultiProvider(
+      providers: [ListenableProvider(create: (_) => UsersProvider())],
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

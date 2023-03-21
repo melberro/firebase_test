@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_test/components/register_page.dart';
 import 'package:flutter/material.dart';
-import 'register.dart';
+
+import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    usernameController = TextEditingController(text: "ertugazi91@gmail.com");
+    usernameController = TextEditingController(text: "deneme@gmail.com");
     passwordController = TextEditingController(text: "12345678");
   }
 
@@ -29,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Giriş Yap",
+              "Login",
               style: TextStyle(
                   color: Colors.orange,
                   fontSize: 30,
@@ -50,7 +52,8 @@ class _LoginPageState extends State<LoginPage> {
                     await auth.signInWithEmailAndPassword(
                         email: usernameController.text,
                         password: passwordController.text);
-                print(credential);
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HomePage()));
               } catch (e) {
                 print(e.toString());
               }
@@ -80,6 +83,8 @@ class _LoginPageState extends State<LoginPage> {
       ),
     ));
   }
+
+ 
 
   Widget _textfield(TextEditingController controller, String label) {
     return TextField(

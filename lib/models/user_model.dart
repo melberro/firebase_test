@@ -2,17 +2,20 @@
 import 'dart:convert';
 
 class UserModel {
+  
   String? id;
   String name;
   int age;
   String email;
   String image;
+  String city;
   UserModel({
     this.id,
     required this.name,
     required this.age,
     required this.email,
     required this.image,
+    required this.city,
   });
 
   UserModel copyWith({
@@ -21,6 +24,7 @@ class UserModel {
     int? age,
     String? email,
     String? image,
+    String? city,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -28,6 +32,7 @@ class UserModel {
       age: age ?? this.age,
       email: email ?? this.email,
       image: image ?? this.image,
+      city: city ?? this.city,
     );
   }
 
@@ -38,6 +43,7 @@ class UserModel {
       'age': age,
       'email': email,
       'image': image,
+      'city': city,
     };
   }
 
@@ -48,16 +54,18 @@ class UserModel {
       age: map['age'] as int,
       email: map['email'] as String,
       image: map['image'] as String,
+      city: map['city'] as String,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory UserModel.fromJson(String source) => UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory UserModel.fromJson(String source) =>
+      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, age: $age, email: $email, image: $image)';
+    return 'UserModel(id: $id, name: $name, age: $age, email: $email, image: $image, city: $city)';
   }
 
   @override
@@ -69,7 +77,8 @@ class UserModel {
       other.name == name &&
       other.age == age &&
       other.email == email &&
-      other.image == image;
+      other.image == image &&
+      other.city == city;
   }
 
   @override
@@ -78,6 +87,7 @@ class UserModel {
       name.hashCode ^
       age.hashCode ^
       email.hashCode ^
-      image.hashCode;
+      image.hashCode ^
+      city.hashCode;
   }
 }

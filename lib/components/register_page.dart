@@ -29,7 +29,20 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text(
+                "Register",
+                style: TextStyle(
+                    color: Colors.orange,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 20,
+              ),
               _textfield(usernameController, "Username"),
+              SizedBox(
+                height: 20,
+              ),
               _textfield(passwordController, "Password"),
               SizedBox(
                 height: 20,
@@ -45,6 +58,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 } catch (e) {
                   print(e.toString());
                 }
+
                 ;
               }, "Register"),
             ],
@@ -58,7 +72,12 @@ class _RegisterPageState extends State<RegisterPage> {
 Widget _textfield(TextEditingController controller, String label) {
   return TextField(
     controller: controller,
-    decoration: InputDecoration(labelText: label),
+    decoration: InputDecoration(
+      labelText: label,
+      border: OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+          borderSide: BorderSide(color: Colors.orange)),
+    ),
   );
 }
 
